@@ -14,9 +14,9 @@ variable "az_list_node" {
   default     = ["nova"]
 }
 
-variable "number_of_bastions" {
-  default = 1
-}
+// variable "number_of_bastions" {
+//   default = 1
+// }
 
 variable "number_of_k8s_masters" {
   default = 2
@@ -176,11 +176,11 @@ variable "supplementary_node_groups" {
   default     = ""
 }
 
-variable "bastion_allowed_remote_ips" {
-  description = "An array of CIDRs allowed to SSH to hosts"
-  type        = "list"
-  default     = ["0.0.0.0/0"]
-}
+// variable "bastion_allowed_remote_ips" {
+//   description = "An array of CIDRs allowed to SSH to hosts"
+//   type        = "list"
+//   default     = ["0.0.0.0/0"]
+// }
 
 variable "master_allowed_remote_ips" {
   description = "An array of CIDRs allowed to access API of masters"

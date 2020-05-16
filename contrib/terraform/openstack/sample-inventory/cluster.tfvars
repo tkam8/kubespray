@@ -7,8 +7,8 @@ az_list = ["nova"]
 # SSH key to use for access to nodes
 public_key_path = "/tmp/terry_rsa.pub"
 
-# image to use for bastion, masters, standalone etcd instances, and nodes
-image = "47802748-6855-4c23-835d-d760b9a1a922"
+# image name to use for bastion, masters, standalone etcd instances, and nodes
+image = "ubuntu1804"
 
 # user on the node (ex. core on Container Linux, ubuntu on Ubuntu, etc.)
 ssh_user = "ubuntu"

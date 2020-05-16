@@ -25,6 +25,14 @@ resource "openstack_networking_secgroup_rule_v2" "k8s_master" {
   security_group_id = "${openstack_networking_secgroup_v2.k8s_master.id}"
 }
 
+resource "openstack_networking_secgroup_rule_v2" "k8s_master" {
+  count             = "${length(var.master_allowed_remote_ips)}"
+  direction         = "egress"
+  ethertype         = "IPv6"
+  remote_ip_prefix  = "${var.master_allowed_remote_ips[count.index]}"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s_master.id}"
+}
+
 // resource "openstack_networking_secgroup_v2" "bastion" {
 //   name                 = "${var.cluster_name}-bastion"
 //   count                = "${var.number_of_bastions != "" ? 1 : 0}"
@@ -51,6 +59,13 @@ resource "openstack_networking_secgroup_v2" "k8s" {
 
 resource "openstack_networking_secgroup_rule_v2" "k8s" {
   direction         = "ingress"
+  ethertype         = "IPv6"
+  remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "k8s" {
+  direction         = "egress"
   ethertype         = "IPv6"
   remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
@@ -89,6 +104,13 @@ resource "openstack_networking_secgroup_rule_v2" "worker" {
   #port_range_min    = "${lookup(var.worker_allowed_ports[count.index], "port_range_min")}"
   #port_range_max    = "${lookup(var.worker_allowed_ports[count.index], "port_range_max")}"
   #remote_ip_prefix  = "${lookup(var.worker_allowed_ports[count.index], "remote_ip_prefix", "0.0.0.0/0")}"
+  remote_ip_prefix  = "::/0"
+  security_group_id = "${openstack_networking_secgroup_v2.worker.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "worker" {
+  direction         = "egress"
+  ethertype         = "IPv6"
   remote_ip_prefix  = "::/0"
   security_group_id = "${openstack_networking_secgroup_v2.worker.id}"
 }

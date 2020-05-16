@@ -26,12 +26,8 @@ data "openstack_networking_router_v2" "k8s" {
 //   dns_nameservers = "${var.dns_nameservers}"
 // }
 
-data "openstack_networking_subnet_v2" "internal_subnet" {
-  name = "${var.internal_subnet_name}"
-}
-
 resource "openstack_networking_router_interface_v2" "k8s" {
   count     = "${var.use_neutron}"
   router_id = "%{if openstack_networking_router_v2.k8s != []}${openstack_networking_router_v2.k8s[count.index].id}%{else}${var.router_id}%{endif}"
-  subnet_id = "${openstack_networking_subnet_v2.internal_subnet[count.index].id}"
+  subnet_id = "${var.internal_subnet_id}"
 }

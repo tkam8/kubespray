@@ -7,7 +7,7 @@ module "network" {
 
   external_net         = "${var.external_net}"
 #  network_name         = "${var.network_name}"
-  internal_subnet_name = "${var.internal_subnet_name}"
+  internal_subnet_id   = "${var.internal_subnet_id}"
 #  subnet_cidr        = "${var.subnet_cidr}"
   cluster_name         = "${var.cluster_name}"
 #  dns_nameservers    = "${var.dns_nameservers}"
@@ -83,7 +83,7 @@ module "compute" {
 }
 
 output "private_subnet_id" {
-  value = "${module.network.subnet_id}"
+  value = "${var.internal_subnet_id}"
 }
 
 output "floating_network_id" {

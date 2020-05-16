@@ -185,7 +185,7 @@ variable "supplementary_node_groups" {
 variable "master_allowed_remote_ips" {
   description = "An array of CIDRs allowed to access API of masters"
   type        = "list"
-  default     = ["0.0.0.0/0"]
+  default     = ["::/0"]
 }
 
 variable "k8s_allowed_remote_ips" {
@@ -197,23 +197,27 @@ variable "k8s_allowed_remote_ips" {
 variable "k8s_allowed_egress_ips" {
   description = "An array of CIDRs allowed for egress traffic"
   type        = "list"
-  default     = ["0.0.0.0/0"]
+  default     = ["::/0"]
 }
 
 variable "worker_allowed_ports" {
   type = "list"
 
   default = [
-    {
-      "protocol"         = "tcp"
-      "port_range_min"   = 30000
-      "port_range_max"   = 32767
-      "remote_ip_prefix" = "0.0.0.0/0"
-    },
-    {
-      "protocol"         = "ipv6-icmp"
-      "remote_ip_prefix" = "0.0.0.0/0"
-    }
+    // {
+    //   "protocol"         = "tcp"
+    //   "port_range_min"   = 30000
+    //   "port_range_max"   = 32767
+    //   "remote_ip_prefix" = "0.0.0.0/0"
+    // },
+    // {
+    //   "protocol"         = "tcp"
+    //   "remote_ip_prefix" = "0.0.0.0/0"
+    // },
+    // {
+    //   "protocol"         = "ipv6-icmp"
+    //   "remote_ip_prefix" = "0.0.0.0/0"
+    // }
   ]
 }
 

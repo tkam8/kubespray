@@ -25,7 +25,7 @@ resource "openstack_networking_secgroup_rule_v2" "k8s_master" {
   security_group_id = "${openstack_networking_secgroup_v2.k8s_master.id}"
 }
 
-resource "openstack_networking_secgroup_rule_v2" "k8s_master" {
+resource "openstack_networking_secgroup_rule_v2" "k8s_master_egress" {
   count             = "${length(var.master_allowed_remote_ips)}"
   direction         = "egress"
   ethertype         = "IPv6"
@@ -59,13 +59,6 @@ resource "openstack_networking_secgroup_v2" "k8s" {
 
 resource "openstack_networking_secgroup_rule_v2" "k8s" {
   direction         = "ingress"
-  ethertype         = "IPv6"
-  remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
-  security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
-}
-
-resource "openstack_networking_secgroup_rule_v2" "k8s" {
-  direction         = "egress"
   ethertype         = "IPv6"
   remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
@@ -108,7 +101,7 @@ resource "openstack_networking_secgroup_rule_v2" "worker" {
   security_group_id = "${openstack_networking_secgroup_v2.worker.id}"
 }
 
-resource "openstack_networking_secgroup_rule_v2" "worker" {
+resource "openstack_networking_secgroup_rule_v2" "worker_egress" {
   direction         = "egress"
   ethertype         = "IPv6"
   remote_ip_prefix  = "::/0"

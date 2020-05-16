@@ -1,17 +1,17 @@
 # your Kubernetes cluster name here
-cluster_name = "i-didnt-read-the-docs"
+cluster_name = "terry-kspray"
 
 # list of availability zones available in your OpenStack cluster
 #az_list = ["nova"]
 
 # SSH key to use for access to nodes
-public_key_path = "~/.ssh/id_rsa.pub"
+public_key_path = "/tmp/terry_rsa.pub"
 
 # image to use for bastion, masters, standalone etcd instances, and nodes
-image = "<image name>"
+image = "ubuntu1804"
 
 # user on the node (ex. core on Container Linux, ubuntu on Ubuntu, etc.)
-ssh_user = "<cloud-provisioned user>"
+ssh_user = "ubuntu"
 
 # 0|1 bastion nodes
 number_of_bastions = 0
@@ -22,22 +22,22 @@ number_of_bastions = 0
 number_of_etcd = 0
 
 # masters
-number_of_k8s_masters = 1
+number_of_k8s_masters = 0
 
 number_of_k8s_masters_no_etcd = 0
 
-number_of_k8s_masters_no_floating_ip = 0
+number_of_k8s_masters_no_floating_ip = 1
 
 number_of_k8s_masters_no_floating_ip_no_etcd = 0
 
-flavor_k8s_master = "<UUID>"
+flavor_k8s_master = "m1.medium"
 
 # nodes
-number_of_k8s_nodes = 2
+number_of_k8s_nodes = 0
 
-number_of_k8s_nodes_no_floating_ip = 4
+number_of_k8s_nodes_no_floating_ip = 2
 
-#flavor_k8s_node = "<UUID>"
+flavor_k8s_node = "m1.medium"
 
 # GlusterFS
 # either 0 or more than one
@@ -50,12 +50,12 @@ number_of_k8s_nodes_no_floating_ip = 4
 #flavor_gfs_node = "<UUID>"
 
 # networking
-network_name = "<network>"
+network_name = "nw_p12-log-v6-1"
 
-external_net = "<UUID>"
+#external_net = "<UUID>"
 
-subnet_cidr = "<cidr>"
+#subnet_cidr = "<cidr>"
 
-floatingip_pool = "<pool>"
+#floatingip_pool = "<pool>"
 
-bastion_allowed_remote_ips = ["0.0.0.0/0"]
+#bastion_allowed_remote_ips = ["0.0.0.0/0"]

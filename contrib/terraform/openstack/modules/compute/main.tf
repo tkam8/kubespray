@@ -169,6 +169,7 @@ resource "openstack_compute_instance_v2" "k8s_master" {
   name              = "${var.cluster_name}-k8s-master-${count.index + 1}"
   count             = "${var.number_of_k8s_masters}"
   availability_zone = "${element(var.az_list, count.index)}"
+  config_drive      = "true"
   image_name        = "${var.image}"
   flavor_id         = "${var.flavor_k8s_master}"
   key_pair          = "${openstack_compute_keypair_v2.k8s.name}"
@@ -216,6 +217,7 @@ resource "openstack_compute_instance_v2" "k8s_master" {
 resource "openstack_compute_instance_v2" "k8s_master_no_etcd" {
   name              = "${var.cluster_name}-k8s-master-ne-${count.index + 1}"
   count             = "${var.number_of_k8s_masters_no_etcd}"
+  config_drive      = "true"
   availability_zone = "${element(var.az_list, count.index)}"
   image_name        = "${var.image}"
   flavor_id         = "${var.flavor_k8s_master}"
@@ -264,6 +266,7 @@ resource "openstack_compute_instance_v2" "k8s_master_no_etcd" {
 resource "openstack_compute_instance_v2" "etcd" {
   name              = "${var.cluster_name}-etcd-${count.index + 1}"
   count             = "${var.number_of_etcd}"
+  config_drive      = "true"
   availability_zone = "${element(var.az_list, count.index)}"
   image_name        = "${var.image}"
   flavor_id         = "${var.flavor_etcd}"
@@ -305,6 +308,7 @@ resource "openstack_compute_instance_v2" "etcd" {
 resource "openstack_compute_instance_v2" "k8s_master_no_floating_ip" {
   name              = "${var.cluster_name}-k8s-master-nf-${count.index + 1}"
   count             = "${var.number_of_k8s_masters_no_floating_ip}"
+  config_drive      = "true"
   availability_zone = "${element(var.az_list, count.index)}"
   image_name        = "${var.image}"
   flavor_id         = "${var.flavor_k8s_master}"
@@ -348,6 +352,7 @@ resource "openstack_compute_instance_v2" "k8s_master_no_floating_ip" {
 resource "openstack_compute_instance_v2" "k8s_master_no_floating_ip_no_etcd" {
   name              = "${var.cluster_name}-k8s-master-ne-nf-${count.index + 1}"
   count             = "${var.number_of_k8s_masters_no_floating_ip_no_etcd}"
+  config_drive      = "true"
   availability_zone = "${element(var.az_list, count.index)}"
   image_name        = "${var.image}"
   flavor_id         = "${var.flavor_k8s_master}"
@@ -391,6 +396,7 @@ resource "openstack_compute_instance_v2" "k8s_master_no_floating_ip_no_etcd" {
 resource "openstack_compute_instance_v2" "k8s_node" {
   name              = "${var.cluster_name}-k8s-node-${count.index + 1}"
   count             = "${var.number_of_k8s_nodes}"
+  config_drive      = "true"
   availability_zone = "${element(var.az_list_node, count.index)}"
   image_name        = "${var.image}"
   flavor_id         = "${var.flavor_k8s_node}"
@@ -438,6 +444,7 @@ resource "openstack_compute_instance_v2" "k8s_node" {
 resource "openstack_compute_instance_v2" "k8s_node_no_floating_ip" {
   name              = "${var.cluster_name}-k8s-node-nf-${count.index + 1}"
   count             = "${var.number_of_k8s_nodes_no_floating_ip}"
+  config_drive      = "true"
   availability_zone = "${element(var.az_list_node, count.index)}"
   image_name        = "${var.image}"
   flavor_id         = "${var.flavor_k8s_node}"
@@ -481,6 +488,7 @@ resource "openstack_compute_instance_v2" "k8s_node_no_floating_ip" {
 resource "openstack_compute_instance_v2" "k8s_nodes" {
   for_each          = var.number_of_k8s_nodes == 0 && var.number_of_k8s_nodes_no_floating_ip == 0 ? var.k8s_nodes : {}
   name              = "${var.cluster_name}-k8s-node-${each.key}"
+  config_drive      = "true"
   availability_zone = "${each.value.az}"
   image_name        = "${var.image}"
   flavor_id         = "${each.value.flavor}"

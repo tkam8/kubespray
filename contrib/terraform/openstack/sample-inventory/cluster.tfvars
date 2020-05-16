@@ -8,7 +8,7 @@ az_list = ["nova"]
 public_key_path = "/tmp/terry_rsa.pub"
 
 # image to use for bastion, masters, standalone etcd instances, and nodes
-image = "ubuntu1804"
+image = "47802748-6855-4c23-835d-d760b9a1a922"
 
 # user on the node (ex. core on Container Linux, ubuntu on Ubuntu, etc.)
 ssh_user = "ubuntu"
@@ -30,14 +30,14 @@ number_of_k8s_masters_no_floating_ip = 1
 
 number_of_k8s_masters_no_floating_ip_no_etcd = 0
 
-flavor_k8s_master = "m1.medium"
+flavor_k8s_master = "ed156027-0c62-4d15-828e-eb875db4cc14"
 
 # nodes
 number_of_k8s_nodes = 0
 
 number_of_k8s_nodes_no_floating_ip = 2
 
-flavor_k8s_node = "m1.medium"
+flavor_k8s_node = "ed156027-0c62-4d15-828e-eb875db4cc14"
 
 # GlusterFS
 # either 0 or more than one

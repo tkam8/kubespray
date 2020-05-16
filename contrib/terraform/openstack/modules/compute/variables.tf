@@ -22,11 +22,11 @@ variable "number_of_k8s_nodes" {}
 
 variable "number_of_k8s_nodes_no_floating_ip" {}
 
-variable "number_of_bastions" {}
+#variable "number_of_bastions" {}
 
-variable "number_of_gfs_nodes_no_floating_ip" {}
+#variable "number_of_gfs_nodes_no_floating_ip" {}
 
-variable "bastion_root_volume_size_in_gb" {}
+#variable "bastion_root_volume_size_in_gb" {}
 
 variable "etcd_root_volume_size_in_gb" {}
 
@@ -34,19 +34,19 @@ variable "master_root_volume_size_in_gb" {}
 
 variable "node_root_volume_size_in_gb" {}
 
-variable "gfs_root_volume_size_in_gb" {}
+#variable "gfs_root_volume_size_in_gb" {}
 
-variable "gfs_volume_size_in_gb" {}
+#variable "gfs_volume_size_in_gb" {}
 
 variable "public_key_path" {}
 
 variable "image" {}
 
-variable "image_gfs" {}
+#variable "image_gfs" {}
 
 variable "ssh_user" {}
 
-variable "ssh_user_gfs" {}
+#variable "ssh_user_gfs" {}
 
 variable "flavor_k8s_master" {}
 
@@ -54,11 +54,11 @@ variable "flavor_k8s_node" {}
 
 variable "flavor_etcd" {}
 
-variable "flavor_gfs_node" {}
+#variable "flavor_gfs_node" {}
 
 variable "network_name" {}
 
-variable "flavor_bastion" {}
+#variable "flavor_bastion" {}
 
 variable "network_id" {
   default = ""
@@ -84,9 +84,9 @@ variable "network_id" {
 //   type = "list"
 // }
 
-variable "bastion_allowed_remote_ips" {
-  type = "list"
-}
+// variable "bastion_allowed_remote_ips" {
+//   type = "list"
+// }
 
 variable "master_allowed_remote_ips" {
   type = "list"

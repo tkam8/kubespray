@@ -9,7 +9,7 @@ module "network" {
 #  network_name         = "${var.network_name}"
   internal_subnet_name = "${var.internal_subnet_name}"
 #  subnet_cidr        = "${var.subnet_cidr}"
-#  cluster_name         = "${var.cluster_name}"
+  cluster_name         = "${var.cluster_name}"
 #  dns_nameservers    = "${var.dns_nameservers}"
 #  network_dns_domain   = "${var.network_dns_domain}"
   use_neutron          = "${var.use_neutron}"

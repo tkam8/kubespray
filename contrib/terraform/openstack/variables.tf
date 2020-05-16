@@ -129,6 +129,11 @@ variable "network_name" {
   default     = "internal"
 }
 
+variable "internal_subnet_name" {
+  description = "name of existing subnet in internal network to use"
+  default     = "internal"
+}
+
 variable "network_dns_domain" {
   description = "dns_domain for the internal network"
   type        = "string"
@@ -162,9 +167,9 @@ variable "wait_for_floatingip" {
   default     = "false"
 }
 
-// variable "external_net" {
-//   description = "uuid of the external/public network"
-// }
+variable "external_net" {
+  description = "uuid of the external/public network"
+}
 
 variable "supplementary_master_groups" {
   description = "supplementary kubespray ansible groups for masters, such kube-node"

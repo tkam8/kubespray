@@ -22,20 +22,20 @@ number_of_bastions = 0
 number_of_etcd = 0
 
 # masters
-number_of_k8s_masters = 0
+number_of_k8s_masters = 1
 
 number_of_k8s_masters_no_etcd = 0
 
-number_of_k8s_masters_no_floating_ip = 1
+number_of_k8s_masters_no_floating_ip = 0
 
 number_of_k8s_masters_no_floating_ip_no_etcd = 0
 
 flavor_k8s_master = "ed156027-0c62-4d15-828e-eb875db4cc14"
 
 # nodes
-number_of_k8s_nodes = 0
+number_of_k8s_nodes = 2
 
-number_of_k8s_nodes_no_floating_ip = 2
+number_of_k8s_nodes_no_floating_ip = 0
 
 flavor_k8s_node = "ed156027-0c62-4d15-828e-eb875db4cc14"
 
@@ -52,10 +52,12 @@ flavor_k8s_node = "ed156027-0c62-4d15-828e-eb875db4cc14"
 # networking
 network_name = "nw_p12-log-v6-1"
 
-#external_net = "<UUID>"
+internal_subnet_name = "sb_p12-log-v6-1"
+
+external_net = "cb562222-d35c-4379-9dc2-d9f4c91f55d2"
 
 #subnet_cidr = "<cidr>"
 
-#floatingip_pool = "<pool>"
+floatingip_pool = "nw_p12-mgmt-v4-1"
 
 #bastion_allowed_remote_ips = ["0.0.0.0/0"]

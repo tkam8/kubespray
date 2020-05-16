@@ -7,5 +7,5 @@ output "router_internal_port_id" {
 }
 
 output "subnet_id" {
-  value = "${element(concat(openstack_networking_subnet_v2.k8s.*.id, [""]), 0)}"
+  value = "${element(concat(openstack_networking_subnet_v2.internal_subnet.*.id, [""]), 0)}"
 }

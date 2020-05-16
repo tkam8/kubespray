@@ -1,16 +1,18 @@
 variable "external_net" {}
 
-variable "network_name" {}
+#variable "network_name" {}
 
-variable "network_dns_domain" {}
+#variable "network_dns_domain" {}
 
-variable "cluster_name" {}
+#variable "cluster_name" {}
 
-variable "dns_nameservers" {
-  type = "list"
-}
+// variable "dns_nameservers" {
+//   type = "list"
+// }
 
-variable "subnet_cidr" {}
+variable "internal_subnet_name" {}
+
+#variable "subnet_cidr" {}
 
 variable "use_neutron" {}
 

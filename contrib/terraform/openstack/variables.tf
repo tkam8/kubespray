@@ -139,6 +139,11 @@ variable "internal_subnet_id" {
   default     = "internal"
 }
 
+variable "network2_subnet_id" {
+  description = "ID of existing subnet in internal network2 to use"
+  default     = "internalsubnet2"
+}
+
 variable "network_dns_domain" {
   description = "dns_domain for the internal network"
   type        = "string"

@@ -31,3 +31,9 @@ resource "openstack_networking_router_interface_v2" "k8s" {
   router_id = "%{if openstack_networking_router_v2.k8s != []}${openstack_networking_router_v2.k8s[count.index].id}%{else}${var.router_id}%{endif}"
   subnet_id = "${var.internal_subnet_id}"
 }
+
+resource "openstack_networking_router_interface_v2" "k8s_sub2" {
+  count     = "${var.use_neutron}"
+  router_id = "%{if openstack_networking_router_v2.k8s != []}${openstack_networking_router_v2.k8s[count.index].id}%{else}${var.router_id}%{endif}"
+  subnet_id = "${var.network2_subnet_id}"
+}

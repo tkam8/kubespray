@@ -12,6 +12,8 @@ variable "cluster_name" {}
 
 variable "internal_subnet_id" {}
 
+variable "network2_subnet_id" {}
+
 #variable "subnet_cidr" {}
 
 variable "use_neutron" {}

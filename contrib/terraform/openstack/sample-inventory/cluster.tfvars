@@ -54,6 +54,7 @@ network_name = "nw_p12-log-v6-1"
 network2_name = "nw_k8s-v4-1"
 
 internal_subnet_id = "5b6f3869-cf1b-4bd6-b5e9-130ba9bde854"
+network2_subnet_id = "1da3e078-c64e-405f-bfcf-33ec013a26a1"
 
 external_net = "cb562222-d35c-4379-9dc2-d9f4c91f55d2"
 

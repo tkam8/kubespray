@@ -76,7 +76,7 @@ resource "openstack_networking_secgroup_v2" "k8s" {
 resource "openstack_networking_secgroup_rule_v2" "k8s" {
   direction         = "ingress"
   ethertype         = "IPv6"
-  remote_ip_prefix  = "0.0.0.0/0"
+  remote_ip_prefix  = "::/0"
   #remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
 }

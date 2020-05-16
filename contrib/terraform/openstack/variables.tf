@@ -162,9 +162,9 @@ variable "wait_for_floatingip" {
   default     = "false"
 }
 
-variable "external_net" {
-  description = "uuid of the external/public network"
-}
+// variable "external_net" {
+//   description = "uuid of the external/public network"
+// }
 
 variable "supplementary_master_groups" {
   description = "supplementary kubespray ansible groups for masters, such kube-node"

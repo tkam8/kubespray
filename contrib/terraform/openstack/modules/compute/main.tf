@@ -46,7 +46,6 @@ resource "openstack_networking_secgroup_rule_v2" "k8s_master" {
 resource "openstack_networking_secgroup_v2" "k8s" {
   name                 = "${var.cluster_name}-k8s"
   description          = "${var.cluster_name} - Kubernetes"
-  ethertype            = "IPv6"
   delete_default_rules = true
 }
 

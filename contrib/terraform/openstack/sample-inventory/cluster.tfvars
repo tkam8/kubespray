@@ -2,7 +2,7 @@
 cluster_name = "terry-kspray1"
 
 # list of availability zones available in your OpenStack cluster
-#az_list = ["nova"]
+az_list = ["nova"]
 
 # SSH key to use for access to nodes
 public_key_path = "/tmp/terry_rsa.pub"

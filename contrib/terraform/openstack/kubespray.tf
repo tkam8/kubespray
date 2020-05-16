@@ -2,32 +2,32 @@ provider "openstack" {
   version = "~> 1.17"
 }
 
-module "network" {
-  source = "./modules/network"
+// module "network" {
+//   source = "./modules/network"
 
-  external_net       = "${var.external_net}"
-  network_name       = "${var.network_name}"
-  subnet_cidr        = "${var.subnet_cidr}"
-  cluster_name       = "${var.cluster_name}"
-  dns_nameservers    = "${var.dns_nameservers}"
-  network_dns_domain = "${var.network_dns_domain}"
-  use_neutron        = "${var.use_neutron}"
-  router_id          = "${var.router_id}"
-}
+//   external_net       = "${var.external_net}"
+//   network_name       = "${var.network_name}"
+//   subnet_cidr        = "${var.subnet_cidr}"
+//   cluster_name       = "${var.cluster_name}"
+//   dns_nameservers    = "${var.dns_nameservers}"
+//   network_dns_domain = "${var.network_dns_domain}"
+//   use_neutron        = "${var.use_neutron}"
+//   router_id          = "${var.router_id}"
+// }
 
-module "ips" {
-  source = "./modules/ips"
+// module "ips" {
+//   source = "./modules/ips"
 
-  number_of_k8s_masters         = "${var.number_of_k8s_masters}"
-  number_of_k8s_masters_no_etcd = "${var.number_of_k8s_masters_no_etcd}"
-  number_of_k8s_nodes           = "${var.number_of_k8s_nodes}"
-  floatingip_pool               = "${var.floatingip_pool}"
-  number_of_bastions            = "${var.number_of_bastions}"
-  external_net                  = "${var.external_net}"
-  network_name                  = "${var.network_name}"
-  router_id                     = "${module.network.router_id}"
-  k8s_nodes                     = "${var.k8s_nodes}"
-}
+//   number_of_k8s_masters         = "${var.number_of_k8s_masters}"
+//   number_of_k8s_masters_no_etcd = "${var.number_of_k8s_masters_no_etcd}"
+//   number_of_k8s_nodes           = "${var.number_of_k8s_nodes}"
+//   floatingip_pool               = "${var.floatingip_pool}"
+//   number_of_bastions            = "${var.number_of_bastions}"
+//   external_net                  = "${var.external_net}"
+//   network_name                  = "${var.network_name}"
+//   router_id                     = "${module.network.router_id}"
+//   k8s_nodes                     = "${var.k8s_nodes}"
+// }
 
 module "compute" {
   source = "./modules/compute"
@@ -78,29 +78,29 @@ module "compute" {
   use_access_ip                                = "${var.use_access_ip}"
   use_server_groups                            = "${var.use_server_groups}"
 
-  network_id = "${module.network.router_id}"
+  #network_id = "${module.network.router_id}"
 }
 
-output "private_subnet_id" {
-  value = "${module.network.subnet_id}"
-}
+// output "private_subnet_id" {
+//   value = "${module.network.subnet_id}"
+// }
 
-output "floating_network_id" {
-  value = "${var.external_net}"
-}
+// output "floating_network_id" {
+//   value = "${var.external_net}"
+// }
 
-output "router_id" {
-  value = "${module.network.router_id}"
-}
+// output "router_id" {
+//   value = "${module.network.router_id}"
+// }
 
-output "k8s_master_fips" {
-  value = "${concat(module.ips.k8s_master_fips, module.ips.k8s_master_no_etcd_fips)}"
-}
+// output "k8s_master_fips" {
+//   value = "${concat(module.ips.k8s_master_fips, module.ips.k8s_master_no_etcd_fips)}"
+// }
 
-output "k8s_node_fips" {
-  value = "${var.number_of_k8s_nodes > 0 ? module.ips.k8s_node_fips : [for key, value in module.ips.k8s_nodes_fips : value.address]}"
-}
+// output "k8s_node_fips" {
+//   value = "${var.number_of_k8s_nodes > 0 ? module.ips.k8s_node_fips : [for key, value in module.ips.k8s_nodes_fips : value.address]}"
+// }
 
-output "bastion_fips" {
-  value = "${module.ips.bastion_fips}"
-}
+// output "bastion_fips" {
+//   value = "${module.ips.bastion_fips}"
+// }

@@ -1,5 +1,5 @@
 # your Kubernetes cluster name here
-cluster_name = "terry-kspray"
+cluster_name = "terry-kspray1"
 
 # list of availability zones available in your OpenStack cluster
 #az_list = ["nova"]

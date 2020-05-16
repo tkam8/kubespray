@@ -76,7 +76,8 @@ resource "openstack_networking_secgroup_v2" "k8s" {
 resource "openstack_networking_secgroup_rule_v2" "k8s" {
   direction         = "ingress"
   ethertype         = "IPv6"
-  remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
+  remote_ip_prefix  = "0.0.0.0/0"
+  #remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
 }
 
@@ -102,14 +103,16 @@ resource "openstack_networking_secgroup_rule_v2" "egress" {
 resource "openstack_networking_secgroup_rule_v2" "k8s_v4" {
   direction         = "ingress"
   ethertype         = "IPv4"
-  remote_group_id   = "0.0.0.0/0"
+  remote_ip_prefix  = "0.0.0.0/0"
+  #remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
 }
 
 resource "openstack_networking_secgroup_rule_v2" "k8s_v4_egress" {
   direction         = "egress"
   ethertype         = "IPv4"
-  remote_group_id   = "0.0.0.0/0"
+  remote_ip_prefix  = "0.0.0.0/0"
+  #remote_group_id   = "${openstack_networking_secgroup_v2.k8s.id}"
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
 }
 

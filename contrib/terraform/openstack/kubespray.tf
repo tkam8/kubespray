@@ -45,7 +45,7 @@ module "compute" {
   number_of_k8s_nodes_no_floating_ip           = "${var.number_of_k8s_nodes_no_floating_ip}"
   #number_of_gfs_nodes_no_floating_ip           = "${var.number_of_gfs_nodes_no_floating_ip}"
   k8s_nodes                                    = "${var.k8s_nodes}"
-  bastion_root_volume_size_in_gb               = "${var.bastion_root_volume_size_in_gb}"
+  #bastion_root_volume_size_in_gb               = "${var.bastion_root_volume_size_in_gb}"
   etcd_root_volume_size_in_gb                  = "${var.etcd_root_volume_size_in_gb}"
   master_root_volume_size_in_gb                = "${var.master_root_volume_size_in_gb}"
   node_root_volume_size_in_gb                  = "${var.node_root_volume_size_in_gb}"

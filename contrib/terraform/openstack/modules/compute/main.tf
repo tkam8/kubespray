@@ -561,32 +561,32 @@ resource "openstack_compute_instance_v2" "k8s_nodes" {
 // }
 
 
-resource "openstack_compute_floatingip_associate_v2" "k8s_master" {
-  count                 = "${var.number_of_k8s_masters}"
-  instance_id           = "${element(openstack_compute_instance_v2.k8s_master.*.id, count.index)}"
-  floating_ip           = "${var.k8s_master_fips[count.index]}"
-  wait_until_associated = "${var.wait_for_floatingip}"
-}
+// resource "openstack_compute_floatingip_associate_v2" "k8s_master" {
+//   count                 = "${var.number_of_k8s_masters}"
+//   instance_id           = "${element(openstack_compute_instance_v2.k8s_master.*.id, count.index)}"
+//   floating_ip           = "${var.k8s_master_fips[count.index]}"
+//   wait_until_associated = "${var.wait_for_floatingip}"
+// }
 
-resource "openstack_compute_floatingip_associate_v2" "k8s_master_no_etcd" {
-  count       = "${var.master_root_volume_size_in_gb == 0 ? var.number_of_k8s_masters_no_etcd : 0}"
-  instance_id = "${element(openstack_compute_instance_v2.k8s_master_no_etcd.*.id, count.index)}"
-  floating_ip = "${var.k8s_master_no_etcd_fips[count.index]}"
-}
+// resource "openstack_compute_floatingip_associate_v2" "k8s_master_no_etcd" {
+//   count       = "${var.master_root_volume_size_in_gb == 0 ? var.number_of_k8s_masters_no_etcd : 0}"
+//   instance_id = "${element(openstack_compute_instance_v2.k8s_master_no_etcd.*.id, count.index)}"
+//   floating_ip = "${var.k8s_master_no_etcd_fips[count.index]}"
+// }
 
-resource "openstack_compute_floatingip_associate_v2" "k8s_node" {
-  count                 = "${var.node_root_volume_size_in_gb == 0 ? var.number_of_k8s_nodes : 0}"
-  floating_ip           = "${var.k8s_node_fips[count.index]}"
-  instance_id           = "${element(openstack_compute_instance_v2.k8s_node[*].id, count.index)}"
-  wait_until_associated = "${var.wait_for_floatingip}"
-}
+// resource "openstack_compute_floatingip_associate_v2" "k8s_node" {
+//   count                 = "${var.node_root_volume_size_in_gb == 0 ? var.number_of_k8s_nodes : 0}"
+//   floating_ip           = "${var.k8s_node_fips[count.index]}"
+//   instance_id           = "${element(openstack_compute_instance_v2.k8s_node[*].id, count.index)}"
+//   wait_until_associated = "${var.wait_for_floatingip}"
+// }
 
-resource "openstack_compute_floatingip_associate_v2" "k8s_nodes" {
-  for_each              = var.number_of_k8s_nodes == 0 && var.number_of_k8s_nodes_no_floating_ip == 0 ? { for key, value in var.k8s_nodes : key => value if value.floating_ip } : {}
-  floating_ip           = "${var.k8s_nodes_fips[each.key].address}"
-  instance_id           = "${openstack_compute_instance_v2.k8s_nodes[each.key].id}"
-  wait_until_associated = "${var.wait_for_floatingip}"
-}
+// resource "openstack_compute_floatingip_associate_v2" "k8s_nodes" {
+//   for_each              = var.number_of_k8s_nodes == 0 && var.number_of_k8s_nodes_no_floating_ip == 0 ? { for key, value in var.k8s_nodes : key => value if value.floating_ip } : {}
+//   floating_ip           = "${var.k8s_nodes_fips[each.key].address}"
+//   instance_id           = "${openstack_compute_instance_v2.k8s_nodes[each.key].id}"
+//   wait_until_associated = "${var.wait_for_floatingip}"
+// }
 
 // resource "openstack_blockstorage_volume_v2" "glusterfs_volume" {
 //   name        = "${var.cluster_name}-glusterfs_volume-${count.index + 1}"

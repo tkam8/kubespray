@@ -58,6 +58,8 @@ variable "flavor_etcd" {}
 
 variable "network_name" {}
 
+variable "network2_name" {}
+
 #variable "flavor_bastion" {}
 
 variable "network_id" {

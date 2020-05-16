@@ -51,6 +51,7 @@ flavor_k8s_node = "ed156027-0c62-4d15-828e-eb875db4cc14"
 
 # networking
 network_name = "nw_p12-log-v6-1"
+network2_name = "nw_k8s-v4-1"
 
 internal_subnet_id = "5b6f3869-cf1b-4bd6-b5e9-130ba9bde854"
 

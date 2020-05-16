@@ -33,6 +33,22 @@ resource "openstack_networking_secgroup_rule_v2" "k8s_master_egress" {
   security_group_id = "${openstack_networking_secgroup_v2.k8s_master.id}"
 }
 
+resource "openstack_networking_secgroup_rule_v2" "k8s_master_v4" {
+  count             = "${length(var.master_allowed_remote_ips)}"
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s_master.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "k8s_master_v4_egress" {
+  count             = "${length(var.master_allowed_remote_ips)}"
+  direction         = "egress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s_master.id}"
+}
+
 // resource "openstack_networking_secgroup_v2" "bastion" {
 //   name                 = "${var.cluster_name}-bastion"
 //   count                = "${var.number_of_bastions != "" ? 1 : 0}"
@@ -83,6 +99,20 @@ resource "openstack_networking_secgroup_rule_v2" "egress" {
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
 }
 
+resource "openstack_networking_secgroup_rule_v2" "k8s_v4" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_group_id   = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "k8s_v4_egress" {
+  direction         = "egress"
+  ethertype         = "IPv4"
+  remote_group_id   = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
+}
+
 resource "openstack_networking_secgroup_v2" "worker" {
   name                 = "${var.cluster_name}-k8s-worker"
   description          = "${var.cluster_name} - Kubernetes worker nodes"
@@ -105,6 +135,22 @@ resource "openstack_networking_secgroup_rule_v2" "worker_egress" {
   direction         = "egress"
   ethertype         = "IPv6"
   remote_ip_prefix  = "::/0"
+  security_group_id = "${openstack_networking_secgroup_v2.worker.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "worker_v4" {
+  #count             = "${length(var.worker_allowed_ports)}"
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.worker.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "worker_v4_egress" {
+  #count             = "${length(var.worker_allowed_ports)}"
+  direction         = "egress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
   security_group_id = "${openstack_networking_secgroup_v2.worker.id}"
 }
 
@@ -191,6 +237,10 @@ resource "openstack_compute_instance_v2" "k8s_master" {
     name = "${var.network_name}"
   }
 
+  network {
+    name = "${var.network2_name}"
+  }
+
   security_groups = ["${openstack_networking_secgroup_v2.k8s_master.name}",
     "${openstack_networking_secgroup_v2.k8s.name}",
   ]
@@ -238,6 +288,10 @@ resource "openstack_compute_instance_v2" "k8s_master_no_etcd" {
 
   network {
     name = "${var.network_name}"
+  }
+
+  network {
+    name = "${var.network2_name}"
   }
 
   security_groups = ["${openstack_networking_secgroup_v2.k8s_master.name}",
@@ -288,6 +342,10 @@ resource "openstack_compute_instance_v2" "etcd" {
     name = "${var.network_name}"
   }
 
+  network {
+    name = "${var.network2_name}"
+  }
+
   security_groups = ["${openstack_networking_secgroup_v2.k8s.name}"]
 
   dynamic "scheduler_hints" {
@@ -328,6 +386,10 @@ resource "openstack_compute_instance_v2" "k8s_master_no_floating_ip" {
 
   network {
     name = "${var.network_name}"
+  }
+
+  network {
+    name = "${var.network2_name}"
   }
 
   security_groups = ["${openstack_networking_secgroup_v2.k8s_master.name}",
@@ -374,6 +436,10 @@ resource "openstack_compute_instance_v2" "k8s_master_no_floating_ip_no_etcd" {
     name = "${var.network_name}"
   }
 
+  network {
+    name = "${var.network2_name}"
+  }
+
   security_groups = ["${openstack_networking_secgroup_v2.k8s_master.name}",
     "${openstack_networking_secgroup_v2.k8s.name}",
   ]
@@ -416,6 +482,10 @@ resource "openstack_compute_instance_v2" "k8s_node" {
 
   network {
     name = "${var.network_name}"
+  }
+
+  network {
+    name = "${var.network2_name}"
   }
 
   security_groups = ["${openstack_networking_secgroup_v2.k8s.name}",
@@ -466,6 +536,10 @@ resource "openstack_compute_instance_v2" "k8s_node_no_floating_ip" {
     name = "${var.network_name}"
   }
 
+  network {
+    name = "${var.network2_name}"
+  }
+
   security_groups = ["${openstack_networking_secgroup_v2.k8s.name}",
     "${openstack_networking_secgroup_v2.worker.name}",
   ]
@@ -508,6 +582,10 @@ resource "openstack_compute_instance_v2" "k8s_nodes" {
 
   network {
     name = "${var.network_name}"
+  }
+
+  network {
+    name = "${var.network2_name}"
   }
 
   security_groups = ["${openstack_networking_secgroup_v2.k8s.name}",

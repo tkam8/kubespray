@@ -129,6 +129,11 @@ variable "network_name" {
   default     = "internal"
 }
 
+variable "network2_name" {
+  description = "name of the second internal network to use"
+  default     = "internal2"
+}
+
 variable "internal_subnet_id" {
   description = "ID of existing subnet in internal network to use"
   default     = "internal"

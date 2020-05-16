@@ -62,6 +62,7 @@ module "compute" {
   flavor_etcd                                  = "${var.flavor_etcd}"
   #flavor_gfs_node                              = "${var.flavor_gfs_node}"
   network_name                                 = "${var.network_name}"
+  network2_name                                = "${var.network2_name}"
   #flavor_bastion                               = "${var.flavor_bastion}"
   k8s_master_fips                              = "${module.ips.k8s_master_fips}"
   k8s_master_no_etcd_fips                      = "${module.ips.k8s_master_no_etcd_fips}"

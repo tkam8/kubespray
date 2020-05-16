@@ -210,6 +210,10 @@ variable "worker_allowed_ports" {
       "port_range_max"   = 32767
       "remote_ip_prefix" = "0.0.0.0/0"
     },
+    {
+      "protocol"         = "ipv6-icmp"
+      "remote_ip_prefix" = "0.0.0.0/0"
+    }
   ]
 }
 

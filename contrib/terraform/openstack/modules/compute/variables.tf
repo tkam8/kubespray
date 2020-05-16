@@ -64,25 +64,25 @@ variable "network_id" {
   default = ""
 }
 
-variable "k8s_master_fips" {
-  type = "list"
-}
+// variable "k8s_master_fips" {
+//   type = "list"
+// }
 
-variable "k8s_master_no_etcd_fips" {
-  type = "list"
-}
+// variable "k8s_master_no_etcd_fips" {
+//   type = "list"
+// }
 
-variable "k8s_node_fips" {
-  type = "list"
-}
+// variable "k8s_node_fips" {
+//   type = "list"
+// }
 
-variable "k8s_nodes_fips" {
-  type = "map"
-}
+// variable "k8s_nodes_fips" {
+//   type = "map"
+// }
 
-variable "bastion_fips" {
-  type = "list"
-}
+// variable "bastion_fips" {
+//   type = "list"
+// }
 
 variable "bastion_allowed_remote_ips" {
   type = "list"

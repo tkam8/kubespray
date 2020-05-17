@@ -104,7 +104,7 @@ variable "k8s_allowed_egress_ips" {
 
 variable "k8s_nodes" {}
 
-variable "wait_for_floatingip" {}
+#variable "wait_for_floatingip" {}
 
 variable "supplementary_master_groups" {
   default = ""

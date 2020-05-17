@@ -24,9 +24,9 @@ number_of_etcd = 0
 # masters
 number_of_k8s_masters = 0
 
-number_of_k8s_masters_no_etcd = 1
+number_of_k8s_masters_no_etcd = 0
 
-number_of_k8s_masters_no_floating_ip = 0
+number_of_k8s_masters_no_floating_ip = 1
 
 number_of_k8s_masters_no_floating_ip_no_etcd = 0
 

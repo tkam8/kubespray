@@ -84,25 +84,25 @@ variable "image" {
   default     = ""
 }
 
-variable "image_gfs" {
-  description = "Glance image to use for GlusterFS"
-  default     = ""
-}
+// variable "image_gfs" {
+//   description = "Glance image to use for GlusterFS"
+//   default     = ""
+// }
 
 variable "ssh_user" {
   description = "used to fill out tags for ansible inventory"
   default     = "ubuntu"
 }
 
-variable "ssh_user_gfs" {
-  description = "used to fill out tags for ansible inventory"
-  default     = "ubuntu"
-}
+// variable "ssh_user_gfs" {
+//   description = "used to fill out tags for ansible inventory"
+//   default     = "ubuntu"
+// }
 
-variable "flavor_bastion" {
-  description = "Use 'openstack flavor list' command to see what your OpenStack instance uses for IDs"
-  default     = 3
-}
+// variable "flavor_bastion" {
+//   description = "Use 'openstack flavor list' command to see what your OpenStack instance uses for IDs"
+//   default     = 3
+// }
 
 variable "flavor_k8s_master" {
   description = "Use 'openstack flavor list' command to see what your OpenStack instance uses for IDs"
@@ -119,10 +119,10 @@ variable "flavor_etcd" {
   default     = 3
 }
 
-variable "flavor_gfs_node" {
-  description = "Use 'openstack flavor list' command to see what your OpenStack instance uses for IDs"
-  default     = 3
-}
+// variable "flavor_gfs_node" {
+//   description = "Use 'openstack flavor list' command to see what your OpenStack instance uses for IDs"
+//   default     = 3
+// }
 
 variable "network_name" {
   description = "name of the internal network to use"
@@ -139,43 +139,43 @@ variable "internal_subnet_id" {
   default     = "internal"
 }
 
-variable "network2_subnet_id" {
-  description = "ID of existing subnet in internal network2 to use"
-  default     = "internalsubnet2"
-}
+// variable "network2_subnet_id" {
+//   description = "ID of existing subnet in internal network2 to use"
+//   default     = "internalsubnet2"
+// }
 
-variable "network_dns_domain" {
-  description = "dns_domain for the internal network"
-  type        = "string"
-  default     = null
-}
+// variable "network_dns_domain" {
+//   description = "dns_domain for the internal network"
+//   type        = "string"
+//   default     = null
+// }
 
 variable "use_neutron" {
   description = "Use neutron"
   default     = 1
 }
 
-variable "subnet_cidr" {
-  description = "Subnet CIDR block."
-  type        = "string"
-  default     = "10.0.0.0/24"
-}
+// variable "subnet_cidr" {
+//   description = "Subnet CIDR block."
+//   type        = "string"
+//   default     = "10.0.0.0/24"
+// }
 
-variable "dns_nameservers" {
-  description = "An array of DNS name server names used by hosts in this subnet."
-  type        = "list"
-  default     = []
-}
+// variable "dns_nameservers" {
+//   description = "An array of DNS name server names used by hosts in this subnet."
+//   type        = "list"
+//   default     = []
+// }
 
-variable "floatingip_pool" {
-  description = "name of the floating ip pool to use"
-  default     = "external"
-}
+// variable "floatingip_pool" {
+//   description = "name of the floating ip pool to use"
+//   default     = "external"
+// }
 
-variable "wait_for_floatingip" {
-  description = "Terraform will poll the instance until the floating IP has been associated."
-  default     = "false"
-}
+// variable "wait_for_floatingip" {
+//   description = "Terraform will poll the instance until the floating IP has been associated."
+//   default     = "false"
+// }
 
 variable "external_net" {
   description = "uuid of the external/public network"

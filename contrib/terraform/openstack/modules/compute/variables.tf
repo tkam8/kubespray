@@ -14,6 +14,8 @@ variable "number_of_k8s_masters_no_etcd" {}
 
 variable "number_of_etcd" {}
 
+variable "number_of_calicorr" {}
+
 variable "number_of_k8s_masters_no_floating_ip" {}
 
 variable "number_of_k8s_masters_no_floating_ip_no_etcd" {}
@@ -29,6 +31,8 @@ variable "number_of_k8s_nodes_no_floating_ip" {}
 #variable "bastion_root_volume_size_in_gb" {}
 
 variable "etcd_root_volume_size_in_gb" {}
+
+variable "calicorr_root_volume_size_in_gb" {}
 
 variable "master_root_volume_size_in_gb" {}
 
@@ -53,6 +57,8 @@ variable "flavor_k8s_master" {}
 variable "flavor_k8s_node" {}
 
 variable "flavor_etcd" {}
+
+variable "flavor_calicorr" {}
 
 #variable "flavor_gfs_node" {}
 

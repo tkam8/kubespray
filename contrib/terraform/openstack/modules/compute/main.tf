@@ -175,6 +175,12 @@ resource "openstack_compute_servergroup_v2" "k8s_etcd" {
   policies = ["anti-affinity"]
 }
 
+resource "openstack_compute_servergroup_v2" "k8s_calicorr" {
+  count    = "%{if var.use_server_groups}1%{else}0%{endif}"
+  name     = "k8s-calicorr-srvgrp"
+  policies = ["anti-affinity"]
+}
+
 // resource "openstack_compute_instance_v2" "bastion" {
 //   name       = "${var.cluster_name}-bastion-${count.index + 1}"
 //   count      = "${var.number_of_bastions}"
@@ -320,6 +326,53 @@ resource "openstack_compute_instance_v2" "k8s_master_no_etcd" {
   // provisioner "local-exec" {
   //   command = "sed s/USER/${var.ssh_user}/ ../../contrib/terraform/openstack/ansible_bastion_template.txt | sed s/BASTION_ADDRESS/${element(concat(var.bastion_fips, var.k8s_master_fips), 0)}/ > group_vars/no-floating.yml"
   // }
+}
+
+resource "openstack_compute_instance_v2" "calicorr" {
+  name              = "${var.cluster_name}-calicorr-${count.index + 1}"
+  count             = "${var.number_of_calicorr}"
+  config_drive      = "true"
+  availability_zone = "${element(var.az_list, count.index)}"
+  image_name        = "${var.image}"
+  flavor_id         = "${var.flavor_calicorr}"
+  key_pair          = "${openstack_compute_keypair_v2.k8s.name}"
+
+  dynamic "block_device" {
+    for_each = var.calicorr_root_volume_size_in_gb > 0 ? [var.image] : []
+    content {
+      uuid                  = "${data.openstack_images_image_v2.vm_image.id}"
+      source_type           = "image"
+      volume_size           = "${var.calicorr_root_volume_size_in_gb}"
+      boot_index            = 0
+      destination_type      = "volume"
+      delete_on_termination = true
+    }
+  }
+
+  network {
+    name = "${var.network_name}"
+  }
+
+  network {
+    name = "${var.network2_name}"
+  }
+
+  security_groups = ["${openstack_networking_secgroup_v2.k8s.name}"]
+
+  dynamic "scheduler_hints" {
+    for_each = var.use_server_groups ? [openstack_compute_servergroup_v2.k8s_calicorr[0]] : []
+    content {
+      group = "${openstack_compute_servergroup_v2.k8s_calicorr[0].id}"
+    }
+  }
+
+  metadata = {
+    ssh_user         = "${var.ssh_user}"
+    python_bin       = "/usr/bin/python3"
+    kubespray_groups = "calico-rr,vault,no-floating"
+    depends_on       = "${var.network_id}"
+    use_access_ip    = "${var.use_access_ip}"
+  }
 }
 
 resource "openstack_compute_instance_v2" "etcd" {

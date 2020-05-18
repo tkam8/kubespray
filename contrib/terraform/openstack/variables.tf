@@ -30,6 +30,10 @@ variable "number_of_etcd" {
   default = 2
 }
 
+variable "number_of_calicorr" {
+  default = 2
+}
+
 variable "number_of_k8s_masters_no_floating_ip" {
   default = 2
 }
@@ -55,6 +59,10 @@ variable "bastion_root_volume_size_in_gb" {
 }
 
 variable "etcd_root_volume_size_in_gb" {
+  default = 0
+}
+
+variable "calicorr_root_volume_size_in_gb" {
   default = 0
 }
 
@@ -115,6 +123,11 @@ variable "flavor_k8s_node" {
 }
 
 variable "flavor_etcd" {
+  description = "Use 'openstack flavor list' command to see what your OpenStack instance uses for IDs"
+  default     = 3
+}
+
+variable "flavor_calicorr" {
   description = "Use 'openstack flavor list' command to see what your OpenStack instance uses for IDs"
   default     = 3
 }

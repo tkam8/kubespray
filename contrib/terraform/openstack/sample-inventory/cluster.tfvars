@@ -39,6 +39,11 @@ number_of_k8s_nodes_no_floating_ip = 2
 
 flavor_k8s_node = "ed156027-0c62-4d15-828e-eb875db4cc14"
 
+# Calico Route Reflector nodes
+number_of_calicorr = 1
+
+flavor_calicorr = "ed156027-0c62-4d15-828e-eb875db4cc14"
+
 # GlusterFS
 # either 0 or more than one
 #number_of_gfs_nodes_no_floating_ip = 0

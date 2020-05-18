@@ -16,11 +16,11 @@
           NO_PROXY: "{{ no_proxy | default ('') }}"
       no_log: true
 
-# - hosts: bastion[0]
-#   gather_facts: False
-#   roles:
-#     - { role: kubespray-defaults }
-#     - { role: bastion-ssh-config, tags: ["localhost", "bastion"] }
+- hosts: bastion[0]
+  gather_facts: False
+  roles:
+    - { role: kubespray-defaults }
+    - { role: bastion-ssh-config, tags: ["localhost", "bastion"] }
 
 - hosts: k8s-cluster:etcd
   strategy: linear

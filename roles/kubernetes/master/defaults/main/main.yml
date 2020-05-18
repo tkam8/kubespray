@@ -17,7 +17,7 @@ kube_apiserver_insecure_bind_address: 127.0.0.1
 
 # By default the external API listens on all interfaces, this can be changed to
 # listen on a specific address/interface.
-kube_apiserver_bind_address: 0.0.0.0
+kube_apiserver_bind_address: "::"
 
 # A port range to reserve for services with NodePort visibility.
 # Inclusive at both ends of the range.

@@ -1,6 +1,6 @@
 ---
 # bind address for kube-proxy
-kube_proxy_bind_address: '0.0.0.0'
+kube_proxy_bind_address: '::'
 
 # acceptContentTypes defines the Accept header sent by clients when connecting to a server, overriding the
 # default value of 'application/json'. This field will control all connections to the server used by a particular
@@ -50,7 +50,7 @@ kube_proxy_conntrack_tcp_established_timeout: 24h0m0s
 kube_proxy_enable_profiling: false
 
 # bind address for kube-proxy health check
-kube_proxy_healthz_bind_address: 0.0.0.0:10256
+kube_proxy_healthz_bind_address: "[::]:10256"
 
 # If using the pure iptables proxy, SNAT everything. Note that it breaks any
 # policy engine.
@@ -86,7 +86,7 @@ kube_proxy_strict_arp: false
 
 # The IP address and port for the metrics server to serve on
 # (set to 0.0.0.0 for all IPv4 interfaces and `::` for all IPv6 interfaces)
-kube_proxy_metrics_bind_address: 127.0.0.1:10249
+kube_proxy_metrics_bind_address: "[::1]:10249"
 
 # A string slice of values which specify the addresses to use for NodePorts.
 # Values may be valid IP blocks (e.g. 1.2.3.0/24, 1.2.3.4/32).

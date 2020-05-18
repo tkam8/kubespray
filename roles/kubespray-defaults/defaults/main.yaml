@@ -1,4 +1,6 @@
 ---
+# Role defaults take second-to-last order of precedence
+
 # Use proxycommand if bastion host is in group all
 # This change obseletes editing ansible.cfg file depending on bastion existence
 ansible_ssh_common_args: "{% if 'bastion' in groups['all'] %} -o ProxyCommand='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p {{ hostvars['bastion']['ansible_user'] }}@{{ hostvars['bastion']['ansible_host'] }} {% if ansible_ssh_private_key_file is defined %}-i {{ ansible_ssh_private_key_file }}{% endif %} ' {% endif %}"
@@ -15,7 +17,7 @@ is_fedora_coreos: false
 disable_swap: true
 
 ## Change this to use another Kubernetes version, e.g. a current beta release
-kube_version: v1.18.2
+kube_version: v1.16.9
 
 ## The minimum version working
 kube_version_min_required: v1.16.0

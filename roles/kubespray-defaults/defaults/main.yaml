@@ -75,7 +75,7 @@ dns_mode: coredns
 
 # Enable nodelocal dns cache
 enable_nodelocaldns: true
-nodelocaldns_ip: 169.254.25.10
+nodelocaldns_ip: "fe80::200:5aee:feaa:2002"
 nodelocaldns_health_port: 9254
 
 # Should be set to a cluster IP if using a custom cluster DNS
@@ -153,12 +153,12 @@ calico_upgrade_enabled: true
 calico_datastore: "etcd"
 
 # Kubernetes internal network for services, unused block of space.
-kube_service_addresses: 10.233.0.0/18
+kube_service_addresses: fd29:639a:8e02:a101::/64
 
 # internal network. When used, it will assign IP
 # addresses from this range to individual pods.
 # This network must be unused in your network infrastructure!
-kube_pods_subnet: 10.233.64.0/18
+kube_pods_subnet: fd29:639a:8e02:b202::/64
 
 # internal network node size allocation (optional). This is the size allocated
 # to each node on your network.  With these defaults you should have
@@ -178,11 +178,11 @@ kube_network_node_prefix: 24
 # NOTE: loadbalancer_apiserver_localhost somewhat alters the final API enpdoint
 # access IP value (automatically evaluated below)
 kube_apiserver_ip: "{{ kube_service_addresses|ipaddr('net')|ipaddr(1)|ipaddr('address') }}"
-kube_apiserver_bind_address: 0.0.0.0
+kube_apiserver_bind_address: "::"
 # https
 kube_apiserver_port: 6443
 # http
-kube_apiserver_insecure_bind_address: 127.0.0.1
+kube_apiserver_insecure_bind_address: "::"
 kube_apiserver_insecure_port: 0
 
 # If non-empty, will use this string as identification instead of the actual hostname

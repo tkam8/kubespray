@@ -50,7 +50,7 @@ kube_proxy_conntrack_tcp_established_timeout: 24h0m0s
 kube_proxy_enable_profiling: false
 
 # bind address for kube-proxy health check
-kube_proxy_healthz_bind_address: "[::]:10256"
+kube_proxy_healthz_bind_address: "[::1]:10256"
 
 # If using the pure iptables proxy, SNAT everything. Note that it breaks any
 # policy engine.

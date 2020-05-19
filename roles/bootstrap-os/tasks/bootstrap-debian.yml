@@ -1,16 +1,5 @@
 ---
 
-# Update /etc/systemd/resolved.conf with DNS addr
-
-- name: add correct resolv.conf entry
-  become: yes
-  lineinfile:
-    dest: /etc/systemd/resolved.conf
-    regexp: '^#DNS='
-    line: 'DNS=8.8.8.8'
-    create: yes
-    state: present
-
 # Some Debian based distros ship without Python installed
 
 - name: Check if bootstrap is needed

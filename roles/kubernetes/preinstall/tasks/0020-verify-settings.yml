@@ -113,12 +113,16 @@
   debug: 
     msg: "{{ ip | regex_replace('^\\[|\\]$', '') }}"
 
+- name: make new var just for this check
+  set_fact:
+    ip_ipv6: "{{ ip | regex_replace('^\\[|\\]$', '') }}"
+
 - name: Stop if ip var does not match local ips
   assert:
-    that: "{{ ip | regex_replace('^\\[|\\]$', '') }} in ansible_all_ipv6_addresses "
+    that: ip_ipv6 in ansible_all_ipv6_addresses
   when:
     - not ignore_assert_errors
-    - ip is defined
+    - ip_ipv6 is defined
 
 - name: Stop if access_ip is not pingable
   command: ping -c1 {{ access_ip }}

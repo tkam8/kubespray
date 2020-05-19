@@ -16,7 +16,7 @@ disabled_plugins = ["restart"]
   runtime = "{{ runc_binary }}"
 
 [plugins.cri]
-  stream_server_address = "127.0.0.1"
+  stream_server_address = "::1"
   max_container_log_line_size = {{ containerd_config.max_container_log_line_size }}
   sandbox_image = "{{ pod_infra_image_repo }}:{{ pod_infra_image_tag }}"
   systemd_cgroup = {{ containerd_use_systemd_cgroup|lower }}

@@ -107,7 +107,7 @@
 - name: Update server field in kube-proxy kubeconfig
   shell: >-
     {{ bin_dir }}/kubectl --kubeconfig {{ kube_config_dir }}/admin.conf get configmap kube-proxy -n kube-system -o yaml
-    | sed 's#server:.*#server: https://127.0.0.1:{{ kube_apiserver_port }}#g'
+    | sed 's#server:.*#server: https://[::1]:{{ kube_apiserver_port }}#g'
     | {{ bin_dir }}/kubectl --kubeconfig {{ kube_config_dir }}/admin.conf replace -f -
   run_once: true
   delegate_to: "{{ groups['kube-master']|first }}"

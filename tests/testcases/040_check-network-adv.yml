@@ -67,7 +67,7 @@
 
     - name: Get netchecker agents
       uri:
-        url: "http://{{ ansible_default_ipv4.address }}:{{ netchecker_port }}/api/v1/agents/"
+        url: "http://{{ ansible_default_ipv6.address }}:{{ netchecker_port }}/api/v1/agents/"
         return_content: yes
       run_once: true
       delegate_to: "{{ groups['kube-master'][0] }}"
@@ -91,7 +91,7 @@
 
     - name: Check netchecker status
       uri:
-        url: "http://{{ ansible_default_ipv4.address }}:{{ netchecker_port }}/api/v1/connectivity_check"
+        url: "http://{{ ansible_default_ipv6.address }}:{{ netchecker_port }}/api/v1/connectivity_check"
         status_code: 200
         return_content: yes
       delegate_to: "{{ groups['kube-master'][0] }}"

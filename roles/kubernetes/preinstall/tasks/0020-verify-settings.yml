@@ -101,11 +101,17 @@
 - name: debug the IP wahooo
   debug: var=ip
 
-- name: debug the IP wahooo
-  debug: "{{ ip | ipv6('address') }}"
+- name: debug the IP ipv6
+  debug: 
+    msg: "{{ ip | ipv6 }}"
 
-- name: debug the IP wahooo
-  debug: "{{ ip | regex_replace('^\\[|\\]$', '') }}"
+- name: debug the IP ipv6 address
+  debug: 
+    msg: "{{ ip | ipv6('address') }}"
+
+- name: debug the IP regex
+  debug: 
+    msg: "{{ ip | regex_replace('^\\[|\\]$', '') }}"
 
 - name: Stop if ip var does not match local ips
   assert:

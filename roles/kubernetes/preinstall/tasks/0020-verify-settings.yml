@@ -102,7 +102,7 @@
   debug: var=ip
 
 - name: debug the IP wahooo
-  debug: "{{ ip | ipv6 }}"
+  debug: "{{ ip | ipv6('address') }}"
 
 - name: debug the IP wahooo
   debug: "{{ ip | ipaddr }}"

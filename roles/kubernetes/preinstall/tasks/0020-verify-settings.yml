@@ -104,6 +104,9 @@
 - name: debug the IP wahooo
   debug: "{{ ip | ipv6 }}"
 
+- name: debug the IP wahooo
+  debug: "{{ ip | ipaddr }}"
+
 - name: Stop if ip var does not match local ips
   assert:
     that: "{{ ip | ipv6 }} in ansible_all_ipv6_addresses "

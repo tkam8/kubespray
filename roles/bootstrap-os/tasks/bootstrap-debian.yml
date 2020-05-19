@@ -1,7 +1,7 @@
 ---
 
 # Update /etc/resolv.conf with DNS addr
-- name: add a list of hosts to /etc/hosts
+- name: Update /etc/resolv.conf with DNS addr
   become: yes
   lineinfile:
     path: /etc/resolv.conf

@@ -105,7 +105,7 @@
   debug: "{{ ip | ipv6('address') }}"
 
 - name: debug the IP wahooo
-  debug: "{{ ip | regex_replace('^\\[|\\]$', '' }}"
+  debug: "{{ ip | regex_replace('^\\[|\\]$', '') }}"
 
 - name: Stop if ip var does not match local ips
   assert:

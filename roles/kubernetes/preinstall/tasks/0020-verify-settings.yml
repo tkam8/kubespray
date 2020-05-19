@@ -92,27 +92,6 @@
     - kube_network_node_prefix is defined
     - kube_network_plugin != 'calico'
 
-- name: debug the IP wahoo
-  debug: var=ansible_all_ipv6_addresses
-
-- name: debug the IP wahoo
-  debug: var=hostvars[inventory_hostname]
-
-- name: debug the IP wahooo
-  debug: var=ip
-
-- name: debug the IP ipv6
-  debug: 
-    msg: "{{ ip | ipv6 }}"
-
-- name: debug the IP ipv6 address
-  debug: 
-    msg: "{{ ip | ipv6('address') }}"
-
-- name: debug the IP regex
-  debug: 
-    msg: "{{ ip | regex_replace('^\\[|\\]$', '') }}"
-
 - name: make new var just for this check
   set_fact:
     ip_ipv6: "{{ ip | regex_replace('^\\[|\\]$', '') }}"

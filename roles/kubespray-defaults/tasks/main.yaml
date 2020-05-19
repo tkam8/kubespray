@@ -5,6 +5,13 @@
   tags:
     - always
 
+# cluster_id hostvar is required: https://github.com/kubernetes-sigs/kubespray/blob/61e7afa9f03a609a54e0c4361dac320eacfe9ba8/docs/calico.md
+- name: set calico cluster_id as required on calico rr
+  set_fact:
+    cluster_id: "1.0.0.1"
+  when:
+    - inventory_hostname == groups['calico-rr'][0]
+
 # do not run gather facts when bootstrap-os in roles
 - name: set fallback_ips
   include_tasks: fallback_ips.yml

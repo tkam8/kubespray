@@ -93,7 +93,7 @@
     - kube_network_plugin != 'calico'
 
 - name: debug the IP wahoo
-  debug: var=ip
+  debug: var=ansible_all_ipv6_addresses
 
 - name: Stop if ip var does not match local ips
   assert:

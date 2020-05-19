@@ -98,6 +98,12 @@
 - name: debug the IP wahoo
   debug: var=hostvars[inventory_hostname]
 
+- name: debug the IP wahooo
+  debug: var=ip
+
+- name: debug the IP wahooo
+  debug: var=ip[0]
+
 - name: Stop if ip var does not match local ips
   assert:
     that: ip[0] in ansible_all_ipv6_addresses

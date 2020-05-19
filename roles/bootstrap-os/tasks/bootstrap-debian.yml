@@ -1,4 +1,13 @@
 ---
+
+# Update /etc/resolv.conf with DNS addr
+- name: add a list of hosts to /etc/hosts
+  become: yes
+  lineinfile:
+    path: /etc/resolv.conf
+    line: nameserver 8.8.8.8
+    create: yes
+
 # Some Debian based distros ship without Python installed
 
 - name: Check if bootstrap is needed

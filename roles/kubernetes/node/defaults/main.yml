@@ -3,10 +3,10 @@
 kube_apiserver_insecure_bind_address: "::"
 
 # advertised host IP for kubelet. This affects network plugin config. Take caution
-kubelet_address: "{{ ip | default(fallback_ips[inventory_hostname]) }}"
+kubelet_address: "{{ ip | regex_replace('^\\[|\\]$', '') | default(fallback_ips[inventory_hostname]) }}"
 
 # bind address for kubelet. Set to 0.0.0.0 to listen on all interfaces
-kubelet_bind_address: "{{ ip | default('::') }}"
+kubelet_bind_address: "{{ ip | regex_replace('^\\[|\\]$', '') | default('::') }}"
 
 # resolv.conf to base dns config
 kube_resolv_conf: "/etc/resolv.conf"
@@ -87,7 +87,7 @@ kube_read_only_port: 0
 kubelet_healthz_port: 10248
 
 # Bind address for healthz for Kubelet
-kubelet_healthz_bind_address: "[::1]"
+kubelet_healthz_bind_address: "::"
 
 # sysctl_file_path to add sysctl conf to
 sysctl_file_path: "/etc/sysctl.d/99-sysctl.conf"

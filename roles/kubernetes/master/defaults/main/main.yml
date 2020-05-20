@@ -35,8 +35,8 @@ kube_etcd_key_file: node-{{ inventory_hostname }}-key.pem
 
 # Associated interfaces must be reachable by the rest of the cluster, and by
 # CLI/web clients.
-kube_controller_manager_bind_address: 0.0.0.0
-kube_scheduler_bind_address: 0.0.0.0
+kube_controller_manager_bind_address: "::"
+kube_scheduler_bind_address: "::"
 
 # discovery_timeout modifies the discovery timeout
 discovery_timeout: 5m0s

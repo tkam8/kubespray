@@ -43,4 +43,4 @@ IP.{{ counter["ip"] }} = {{ hostvars[host]['ip'] | regex_replace('^\\[|\\]$', ''
 IP.{{ counter["ip"] }} = {{ cert_alt_ip }}{{ increment(counter, 'ip') }}
 {% endfor %}
 IP.{{ counter["ip"] }} = 127.0.0.1{{ increment(counter, 'ip') }}
-IP.{{ counter["ip"] }} = [::1]
+IP.{{ counter["ip"] }} = ::1

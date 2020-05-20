@@ -142,6 +142,7 @@
     --ignore-preflight-errors=all
     --skip-phases=addon/coredns
     --upload-certs
+    --v=5
   register: kubeadm_init
   # Retry is because upload config sometimes fails
   retries: 3

@@ -88,7 +88,7 @@ kube_pods_subnet: fd29:639a:8e02:b202::/64
 # internal network node size allocation (optional). This is the size allocated
 # to each node on your network.  With these defaults you should have
 # room for 4096 nodes with 254 pods per node.
-kube_network_node_prefix: 96
+kube_network_node_prefix: 116
 
 # The port the API Server will be listening on.
 kube_apiserver_ip: "{{ kube_service_addresses|ipaddr('net')|ipaddr(1)|ipaddr('address') }}"

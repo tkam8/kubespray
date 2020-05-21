@@ -96,3 +96,12 @@ upstream_dns_servers:
 ## Set Pypi repo and cert accordingly
 # pyrepo_index: https://pypi.example.com/simple
 # pyrepo_cert: /etc/ssl/certs/ca-certificates.crt
+
+# Ensuring these vars are accessible, originally from kubespray-defaults default role
+# Kubernetes internal network for services, unused block of space.
+kube_service_addresses: fd29:639a:8e02:a101::/108
+
+# internal network. When used, it will assign IP
+# addresses from this range to individual pods.
+# This network must be unused in your network infrastructure!
+kube_pods_subnet: fd29:639a:8e02:b202::/64

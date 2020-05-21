@@ -452,7 +452,7 @@ etcd_events_peer_url: "https://{{ etcd_events_access_address }}:2382"
 etcd_events_client_url: "https://{{ etcd_events_access_address }}:2381"
 etcd_access_addresses: |-
   {% for item in groups['etcd'] -%}
-    https://{{ hostvars[item]['access_ip'] | default(hostvars[item]['ip'] | default(fallback_ips[item])) }}:2379{% if not loop.last %},{% endif %}
+    https://{{ hostvars[item]['ip'] | default(hostvars[item]['access_ip'] | default(fallback_ips[item])) }}:2379{% if not loop.last %},{% endif %}
   {%- endfor %}
 etcd_events_access_addresses_list: |-
   [

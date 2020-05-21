@@ -105,7 +105,7 @@ apiServer:
     anonymous-auth: "{{ kube_api_anonymous_auth }}"
 {% endif %}
     authorization-mode: {{ authorization_modes | join(',') }}
-    bind-address: {{ kube_apiserver_bind_address }}
+    bind-address: "{{ kube_apiserver_bind_address }}"
 {% if kube_apiserver_insecure_port|string != "0" %}
     insecure-bind-address: {{ kube_apiserver_insecure_bind_address }}
 {% endif %}

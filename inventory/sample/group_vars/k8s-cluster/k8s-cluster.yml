@@ -78,7 +78,7 @@ kube_network_plugin: calico
 kube_network_plugin_multus: false
 
 # Kubernetes internal network for services, unused block of space.
-kube_service_addresses: fd29:639a:8e02:a101::/64
+kube_service_addresses: fd29:639a:8e02:a101::/108
 
 # internal network. When used, it will assign IP
 # addresses from this range to individual pods.

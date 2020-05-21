@@ -153,7 +153,7 @@ calico_upgrade_enabled: true
 calico_datastore: "etcd"
 
 # Kubernetes internal network for services, unused block of space.
-kube_service_addresses: fd29:639a:8e02:a101::/64
+kube_service_addresses: fd29:639a:8e02:a101::/108
 
 # internal network. When used, it will assign IP
 # addresses from this range to individual pods.

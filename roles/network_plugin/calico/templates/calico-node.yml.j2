@@ -215,8 +215,13 @@ spec:
 #            # Configure the IP Pool from which Pod IPs will be chosen.
 #            - name: CALICO_IPV4POOL_CIDR
 #              value: "{{ calico_pool_cidr | default(kube_pods_subnet) }}"
-#            - name: CALICO_IPV4POOL_IPIP
+            - name: CALICO_IPV4POOL_IPIP
+              value: "never"
 #              value: "{{ calico_ipv4pool_ipip }}"
+            - name: CALICO_IPV6POOL_CIDR
+              value: "fd29:639a:8e02:b202::/108"
+            - name: IP6
+              value: "autodetect"
             # Enable IPv6 on Kubernetes.
             - name: FELIX_IPV6SUPPORT
               value: "true"

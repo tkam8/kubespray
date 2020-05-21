@@ -10,7 +10,7 @@
 # This network must be unused in your network infrastructure!
 - name: set pod subnet cidr
   set_fact:
-    kube_pods_subnet: fd29:639a:8e02:b202::/64
+    kube_pods_subnet: fd29:639a:8e02:b202::/108
 
 - import_tasks: pre-upgrade.yml
   tags:

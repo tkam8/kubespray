@@ -158,7 +158,7 @@ kube_service_addresses: fd29:639a:8e02:a101::/108
 # internal network. When used, it will assign IP
 # addresses from this range to individual pods.
 # This network must be unused in your network infrastructure!
-kube_pods_subnet: fd29:639a:8e02:b202::/64
+kube_pods_subnet: fd29:639a:8e02:b202::/108
 
 # internal network node size allocation (optional). This is the size allocated
 # to each node on your network.  With these defaults you should have

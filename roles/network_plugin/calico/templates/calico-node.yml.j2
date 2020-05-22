@@ -252,19 +252,8 @@ spec:
 {% endif %}
             - name: CALICO_ROUTER_ID
               value: "hash"
-#            - name: IP6_AUTODETECTION_METHOD
-#              value: "{{ calico_ip_auto_method }}"
             - name: IP
               value: "none"
-#{% if calico_ip_auto_method is defined %}
-#            - name: IP_AUTODETECTION_METHOD
-#              value: "{{ calico_ip_auto_method }}"
-#{% else %}
-#            - name: IP
-#              valueFrom:
-#                fieldRef:
-#                  fieldPath: status.hostIP
-#{% endif %}
             - name: NODENAME
               valueFrom:
                 fieldRef:

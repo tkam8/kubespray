@@ -251,7 +251,9 @@ spec:
               value: "{{ kube_service_addresses }}"
 {% endif %}
 {% if calico_ip_auto_method is defined %}
-            - name: IP_AUTODETECTION_METHOD
+#            - name: IP_AUTODETECTION_METHOD
+#              value: "{{ calico_ip_auto_method }}"
+            - name: IP6_AUTODETECTION_METHOD
               value: "{{ calico_ip_auto_method }}"
             - name: IP
               value: "autodetect"

@@ -250,13 +250,15 @@ spec:
             - name: CALICO_ADVERTISE_CLUSTER_IPS
               value: "{{ kube_service_addresses }}"
 {% endif %}
+            - name: CALICO_ROUTER_ID
+              value: "hash"
 {% if calico_ip_auto_method is defined %}
 #            - name: IP_AUTODETECTION_METHOD
 #              value: "{{ calico_ip_auto_method }}"
             - name: IP6_AUTODETECTION_METHOD
               value: "{{ calico_ip_auto_method }}"
             - name: IP
-              value: "autodetect"
+              value: "none"
 {% else %}
             - name: IP
               valueFrom:

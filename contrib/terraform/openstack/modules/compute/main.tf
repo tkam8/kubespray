@@ -369,7 +369,7 @@ resource "openstack_compute_instance_v2" "calicorr" {
   metadata = {
     ssh_user         = "${var.ssh_user}"
     python_bin       = "/usr/bin/python3"
-    kubespray_groups = "calico-rr,vault,no-floating"
+    kubespray_groups = "calico-rr,k8s-cluster,vault,no-floating"
     depends_on       = "${var.network_id}"
     use_access_ip    = "${var.use_access_ip}"
   }

@@ -1,4 +1,9 @@
 ---
+# cluster_id hostvar is required: https://github.com/kubernetes-sigs/kubespray/blob/61e7afa9f03a609a54e0c4361dac320eacfe9ba8/docs/calico.md
+- name: set calico cluster_id as required
+  set_fact:
+    cluster_id: "1.0.0.1"
+
 - name: Calico-rr | Pre-upgrade tasks
   include_tasks: pre.yml
 

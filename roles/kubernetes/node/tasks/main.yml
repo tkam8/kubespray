@@ -1,4 +1,21 @@
 ---
+# Ensuring these vars are set (if changed after initial run hostvars may not update), originally from kubespray-defaults default role
+# Kubernetes internal network for services, unused block of space.
+- name: set service cluster IP cidr
+  set_fact:
+    kube_service_addresses: fd29:639a:8e02:a101::/108
+
+# internal network. When used, it will assign IP
+# addresses from this range to individual pods.
+# This network must be unused in your network infrastructure!
+- name: set pod subnet cidr
+  set_fact:
+    kube_pods_subnet: fd29:639a:8e02:b202::/108
+
+- name: set  --node-cidr-mask-size 
+  set_fact:
+    kube_network_node_prefix: 122
+
 - import_tasks: facts.yml
   tags:
     - facts

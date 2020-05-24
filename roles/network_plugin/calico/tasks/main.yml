@@ -4,7 +4,7 @@
 # to each node on your network.  For IPv6, (IPv6 block size must be between 116 and 128)
 - name: set calico block size
   set_fact:
-    kube_network_node_prefix: 116
+    kube_network_node_prefix: 122
 
 - import_tasks: check.yml
 

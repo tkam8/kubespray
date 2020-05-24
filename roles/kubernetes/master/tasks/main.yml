@@ -14,7 +14,7 @@
 
 - name: set  --node-cidr-mask-size 
   set_fact:
-    kube_network_node_prefix: 116
+    kube_network_node_prefix: 122
 
 - import_tasks: pre-upgrade.yml
   tags:

@@ -361,10 +361,10 @@ authorization_modes: ['Node', 'RBAC']
 rbac_enabled: "{{ 'RBAC' in authorization_modes }}"
 
 # When enabled, API bearer tokens (including service account tokens) can be used to authenticate to the kubelet’s HTTPS endpoint
-kubelet_authentication_token_webhook: true
+kubelet_authentication_token_webhook: false
 
 # When enabled, access to the kubelet API requires authorization by delegation to the API server
-kubelet_authorization_mode_webhook: true
+kubelet_authorization_mode_webhook: false
 
 # kubelet uses certificates for authenticating to the Kubernetes API
 # Automatically generate a new key and request a new certificate from the Kubernetes API as the current certificate approaches expiration
@@ -427,7 +427,7 @@ kube_apiserver_endpoint: |-
   {% if loadbalancer_apiserver is defined -%}
        https://{{ apiserver_loadbalancer_domain_name }}:{{ loadbalancer_apiserver.port|default(kube_apiserver_port) }}
   {%- elif not is_kube_master and loadbalancer_apiserver_localhost -%}
-       https://localhost:{{ loadbalancer_apiserver_port|default(kube_apiserver_port) }}
+       https://{{ hostvars[groups['kube-master'][0]]['ip'] }}:{{ loadbalancer_apiserver_port|default(kube_apiserver_port) }}
   {%- elif is_kube_master -%}
        https://{{ kube_apiserver_bind_address | regex_replace('0\.0\.0\.0','127.0.0.1') }}:{{ kube_apiserver_port }}
   {%- else -%}

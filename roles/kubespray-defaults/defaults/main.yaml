@@ -427,7 +427,7 @@ kube_apiserver_endpoint: |-
   {% if loadbalancer_apiserver is defined -%}
        https://{{ apiserver_loadbalancer_domain_name }}:{{ loadbalancer_apiserver.port|default(kube_apiserver_port) }}
   {%- elif not is_kube_master and loadbalancer_apiserver_localhost -%}
-       https://{{ hostvars[groups['kube-master'][0]]['ip'] }}:{{ loadbalancer_apiserver_port|default(kube_apiserver_port) }}
+       https://localhost:{{ loadbalancer_apiserver_port|default(kube_apiserver_port) }}
   {%- elif is_kube_master -%}
        https://{{ kube_apiserver_bind_address | regex_replace('0\.0\.0\.0','127.0.0.1') }}:{{ kube_apiserver_port }}
   {%- else -%}
